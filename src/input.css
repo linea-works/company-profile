@@ -90,7 +90,7 @@ body {
     rgba(255, 255, 255, 0.02)
   );
   backdrop-filter: blur(14px) saturate(140%);
-  border: 1px solid var(--glass-border);
+  /* border: 1px solid var(--glass-border); */
   border-radius: 20px;
   box-shadow: var(--shadow-soft);
 }
@@ -196,6 +196,21 @@ body {
     }
   }
 
+  @keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float-soft 4s ease-in-out infinite;
+}
+
+/* Memperhalus tampilan card di section metrics */
+#metrics .card-base {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+}
+
   .face {
     animation: face-rotate ease both;
     animation-range: contain;
@@ -217,4 +232,131 @@ body {
   .face-4 { animation-timeline: --lead-4; }
   .face-5 { animation-timeline: --lead-5; }
   .face-6 { animation-timeline: --lead-6; }
+}
+
+.swiper-pagination-bullet {
+        background: var(--text-muted);
+        opacity: 0.3;
+        width: 12px;
+        height: 12px;
+        transition: all 0.3s ease;
+    }
+    .swiper-pagination-bullet-active {
+        background: var(--color-brand-accent) !important;
+        opacity: 1;
+        width: 32px;
+        border-radius: 6px;
+    }
+
+ @layer utilities {
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+}
+
+@layer utilities {
+  /* Animasi Reveal Teks (Masking) */
+  @keyframes reveal-mask {
+    from { clip-path: inset(0 0 100% 0); transform: translateY(50px); }
+    to { clip-path: inset(0 0 0 0); transform: translateY(0); }
+  }
+
+  /* Animasi Stagger (Masuk satu per satu) */
+  @keyframes stagger-in {
+    0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .reveal-text {
+    view-timeline-name: --text-reveal;
+    view-timeline-axis: block;
+    animation: reveal-mask linear both;
+    animation-timeline: --text-reveal;
+    animation-range: entry 10% cover 40%;
+  }
+
+  /* Helper untuk kartu stagger */
+  .stagger-card {
+    view-timeline-name: --card-in;
+    animation: stagger-in linear both;
+    animation-timeline: --card-in;
+    animation-range: entry 5% cover 25%;
+  }
+}
+
+/* Background Pattern */
+.bg-tech-grid {
+  background-image: radial-gradient(var(--border-color) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+}
+
+/* Pastikan utility marquee-mask tetap ada untuk gradasi transparan di pinggir */
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+@layer utilities {
+  .animate-in {
+    animation-fill-mode: both;
+  }
+  
+  .fade-in {
+    animation-name: fadeIn;
+  }
+  
+  .zoom-in-95 {
+    animation-name: zoomIn95;
+  }
+  
+  .slide-in-from-bottom-4 { animation-name: slideInBottom4; }
+  .slide-in-from-bottom-6 { animation-name: slideInBottom6; }
+  .slide-in-from-bottom-10 { animation-name: slideInBottom10; }
+  .slide-in-from-left-6 { animation-name: slideInLeft6; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes zoomIn95 {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes slideInBottom4 {
+    from { opacity: 0; transform: translateY(1rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideInBottom10 {
+    from { opacity: 0; transform: translateY(2.5rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideInLeft6 {
+    from { opacity: 0; transform: translateX(-1.5rem); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .duration-700 { animation-duration: 700ms; }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-500 { animation-delay: 500ms; }
+}
+
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float { animation: float-soft 5s ease-in-out infinite; }
+
+.bg-dot-pattern {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 32px 32px;
 }
