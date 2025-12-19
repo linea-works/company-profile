@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+@theme {
+  /* === Brand Core === */
+  --color-brand-primary: #2d3d4d;
+  --color-brand-primary-hover: #1b2733;
+  --color-brand-secondary: #5b728a;
+  --color-brand-accent: #2ec4b6; /* Modern Tech Mint */
+  --color-brand-gold: #f5b942;
+
+  /* === Semantic === */
+  --color-success: #22c55e;
+  --color-info: #38bdf8;
+  --color-warning: #facc15;
+  --color-danger: #ef4444;
+
+  /* === Typography === */
+  --font-display: "Montserrat", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+:root {
+  --bg-body: #f9fafb;
+  --bg-card: #ffffff;
+  --bg-elevated: #f1f5f9;
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+
+  --border-color: rgba(15, 23, 42, 0.08);
+
+  --nav-bg: rgba(255, 255, 255, 0.75);
+  --hero-overlay: rgba(255, 255, 255, 0.65);
+  --bg-footer: #0f172a;
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.4);
+
+  /* Shadow system */
+  --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.06);
+  --shadow-card: 0 6px 20px rgba(15, 23, 42, 0.08);
+}
+
+.dark {
+  --bg-body: #020617;
+  --bg-card: #0f172a;
+  --bg-elevated: #1e293b;
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+
+  --border-color: rgba(255, 255, 255, 0.08);
+
+  --nav-bg: rgba(2, 6, 23, 0.7);
+  --hero-overlay: rgba(2, 6, 23, 0.8);
+  --bg-footer: #000000;
+
+  --glass-bg: rgba(15, 23, 42, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.06);
+
+  --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.6);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  transition: background-color 0.4s ease, color 0.3s ease;
+}
+
+.card-base {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-card);
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-base:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-soft);
+}
+
+
+.glass-panel {
+  background: linear-gradient(
+    180deg,
+    var(--glass-bg),
+    rgba(255, 255, 255, 0.02)
+  );
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+
+/* Switch Toggle LineaWorks Style */
+.switch-toggle {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    135deg,
+    var(--border-color),
+    rgba(255,255,255,0.1)
+  );
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.switch-active {
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-primary),
+    var(--color-brand-accent)
+  );
+}
+
+.switch-toggle::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+.switch-active::after {
+  transform: translateX(24px);
+}
+
+
+/* Marquee & Logo Filters */
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+.logo-item {
+  opacity: 0.5;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.logo-item:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.dark .logo-item {
+  filter: brightness(0) invert(1) opacity(0.5);
+}
+
+.dark .logo-item:hover {
+  filter: brightness(1) invert(0) grayscale(0);
+}
+
+/* Animations */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+/* Update pada input.css */
+@layer demo {
+  .team-scroll-container {
+    /* Mendefinisikan scope timeline untuk semua anggota tim */
+    timeline-scope: --lead-1, --lead-2, --lead-3, --lead-4, --lead-5, --lead-6;
+  }
+
+  /* Keyframe animasi putaran 3D kiri-kanan sesuai contoh scrollytelling */
+  @keyframes face-rotate {
+    0% {
+      opacity: 0;
+      transform: perspective(1000px) rotateY(90deg) rotateX(-5deg) rotate(10deg);
+    }
+    5% { opacity: 1; }
+    70% {
+      opacity: 1;
+      transform: perspective(1000px) rotateY(-30deg) rotateX(5deg) rotate(-1deg);
+    }
+    95% { opacity: 1; }
+    100% {
+      opacity: 0;
+      transform: perspective(1000px) rotateY(-90deg) rotateX(10deg) rotate(10deg);
+    }
+  }
+
+  .face {
+    animation: face-rotate ease both;
+    animation-range: contain;
+    backface-visibility: hidden;
+  }
+
+  /* Mapping Section ke Timeline */
+  .lead-section:nth-of-type(1) { view-timeline: --lead-1 y; }
+  .lead-section:nth-of-type(2) { view-timeline: --lead-2 y; }
+  .lead-section:nth-of-type(3) { view-timeline: --lead-3 y; }
+  .lead-section:nth-of-type(4) { view-timeline: --lead-4 y; }
+  .lead-section:nth-of-type(5) { view-timeline: --lead-5 y; }
+  .lead-section:nth-of-type(6) { view-timeline: --lead-6 y; }
+
+  /* Mapping Card ke Timeline */
+  .face-1 { animation-timeline: --lead-1; }
+  .face-2 { animation-timeline: --lead-2; }
+  .face-3 { animation-timeline: --lead-3; }
+  .face-4 { animation-timeline: --lead-4; }
+  .face-5 { animation-timeline: --lead-5; }
+  .face-6 { animation-timeline: --lead-6; }
+}

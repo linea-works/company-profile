@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LineaWorks — Smart IT. Optimized Cost.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="./output.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body class="antialiased font-body selection:bg-brand-primary selection:text-white"
+    x-data="{ darkMode: localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches), toggleTheme() { this.darkMode = !this.darkMode; localStorage.setItem('theme', this.darkMode ? 'dark' : 'light'); document.documentElement.classList.toggle('dark', this.darkMode); } }"
+    x-init="if (darkMode) document.documentElement.classList.add('dark')">
+
+    <nav x-data="{ scrolled: false, mobileOpen: false, megaOpen: false }"
+        @scroll.window="scrolled = (window.pageYOffset > 20)"
+        class="fixed top-0 w-full z-50 transition-all duration-300"
+        :class="scrolled ? 'glass-panel py-3 shadow-lg' : 'bg-transparent py-5'">
+
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="font-display font-black text-2xl tracking-tight uppercase flex items-center gap-2">
+                <img src="./img/logos/linea-works.png" alt="Linea Works Logo" class="md:h-8 h-5 w-auto object-contain">
+            </a>
+
+            <div class="hidden lg:flex items-center space-x-1">
+                <a href="#" class="px-4 py-2 text-sm font-semibold hover:text-brand-primary transition-colors">Home</a>
+
+                <div class="relative group" @mouseenter="megaOpen = true" @mouseleave="megaOpen = false">
+                    <button
+                        class="px-4 py-2 text-sm font-semibold hover:text-brand-primary transition-colors flex items-center gap-1">
+                        Solutions <i class="ph ph-caret-down transition-transform duration-200"
+                            :class="megaOpen ? 'rotate-180' : ''"></i>
+                    </button>
+
+                    <div x-show="megaOpen" x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 translate-y-2"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 translate-y-0"
+                        x-transition:leave-end="opacity-0 translate-y-2"
+                        class="absolute top-full left-1/2 -translate-x-1/2 w-[850px] card-base rounded-2xl p-8 mt-2 grid grid-cols-3 gap-8 z-50 shadow-2xl">
+
+                        <div>
+                            <h6 class="font-bold mb-5 flex items-center gap-2 text-brand-primary">
+                                <i class="ph ph-cloud-base"></i> Infrastructure (IaaS)
+                            </h6>
+                            <ul class="space-y-4 text-sm text-muted">
+                                <li><a href="#" class="hover:text-brand-primary flex items-center gap-2 group">
+                                        <span
+                                            class="w-1.5 h-1.5 rounded-full bg-brand-primary/30 group-hover:bg-brand-primary transition-all"></span>
+                                        Cloud Architecture
+                                    </a></li>
+                                <li><a href="#" class="hover:text-brand-primary flex items-center gap-2 group">
+                                        <span
+                                            class="w-1.5 h-1.5 rounded-full bg-brand-primary/30 group-hover:bg-brand-primary transition-all"></span>
+                                        Scalable Systems
+                                    </a></li>
+                                <li><a href="#" class="hover:text-brand-primary flex items-center gap-2 group">
+                                        <span
+                                            class="w-1.5 h-1.5 rounded-full bg-brand-primary/30 group-hover:bg-brand-primary transition-all"></span>
+                                        Network Optimization
+                                    </a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h6 class="font-bold mb-5 flex items-center gap-2 text-brand-primary">
+                                <i class="ph ph-cpu"></i> Managed Services
+                            </h6>
+                            <ul class="space-y-4 text-sm text-muted">
+                                <li><a href="#" class="hover:text-brand-primary flex items-center gap-2 group">
+                                        <span
+                                            class="w-1.5 h-1.5 rounded-full bg-brand-primary/30 group-hover:bg-brand-primary transition-all"></span>
+                                        Application Operations
+                                    </a></li>
+                                <li><a href="#" class="hover:text-brand-primary flex items-center gap-2 group">
+                                        <span
+                                            class="w-1.5 h-1.5 rounded-full bg-brand-primary/30 group-hover:bg-brand-primary transition-all"></span>
+                                        Proactive Maintenance
+                                    </a></li>
+                                <li><a href="#" class="hover:text-brand-primary flex items-center gap-2 group">
+                                        <span
+                                            class="w-1.5 h-1.5 rounded-full bg-brand-primary/30 group-hover:bg-brand-primary transition-all"></span>
+                                        Cost Control Analysis
+                                    </a></li>
+                            </ul>
+                        </div>
+
+                        <div class="relative rounded-xl overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=400"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-brand-primary/80 flex flex-col justify-end p-5">
+                                <span class="text-white font-bold text-sm mb-1">Efficiency Focus</span>
+                                <p class="text-white/80 text-[11px] leading-tight">Reduce IT spending by up to 30% with
+                                    smart architecture.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#packages"
+                    class="px-4 py-2 text-sm font-semibold hover:text-brand-primary transition-colors">Packages</a>
+                <a href="#team"
+                    class="px-4 py-2 text-sm font-semibold hover:text-brand-primary transition-colors">Leadership</a>
+                <a href="#metrics"
+                    class="px-4 py-2 text-sm font-semibold hover:text-brand-primary transition-colors">Performance</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button @click="toggleTheme()"
+                    class="p-2 rounded-full flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+                    <i class="ph text-xl" :class="darkMode ? 'ph-sun text-yellow-400' : 'ph-moon text-gray-600'"></i>
+                </button>
+
+                <a href="#contact"
+                    class="hidden md:block px-6 py-2.5 text-sm font-bold bg-brand-primary hover:bg-brand-primary-hover text-white rounded-lg shadow-lg hover:shadow-brand-primary/30 transition-all">
+                    Consultation
+                </a>
+
+                <button @click="mobileOpen = !mobileOpen" class="lg:hidden text-2xl">
+                    <i class="ph ph-list-bold"></i>
+                </button>
+            </div>
+        </div>
+
+        <div x-show="mobileOpen" class="fixed inset-0 z-60 lg:hidden" style="display: none;">
+            <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="mobileOpen = false"></div>
+            <div class="absolute right-0 top-0 h-full w-[85%] max-w-sm card-base p-8 shadow-2xl flex flex-col"
+                x-transition:enter="transition transform ease-out duration-300"
+                x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0">
+                <div class="flex justify-between items-center mb-10">
+                    <span class="font-display font-bold text-xl tracking-tight uppercase">LineaWorks</span>
+                    <button @click="mobileOpen = false" class="p-2 hover:bg-black/5 rounded-full"><i
+                            class="ph ph-x text-2xl"></i></button>
+                </div>
+                <ul class="space-y-6 font-semibold">
+                    <li><a href="#" class="block text-lg border-b border-color pb-2">Home</a></li>
+                    <li><a href="#solutions" class="block text-lg border-b border-color pb-2">Solutions</a></li>
+                    <li><a href="#packages" class="block text-lg border-b border-color pb-2">Packages</a></li>
+                    <li><a href="#team" class="block text-lg border-b border-color pb-2">Leadership</a></li>
+                </ul>
+                <div class="mt-auto">
+                    <a href="#contact"
+                        class="w-full block text-center py-4 bg-brand-primary text-white rounded-xl font-bold">Start
+                        Your Strategy</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-40 pb-20 lg:pt-56 lg:pb-40 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000"
+                class="w-full h-full object-cover opacity-30 dark:opacity-20">
+            <div class="absolute inset-0 bg-linear-to-b from-transparent to-(--bg-body)"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-primary/10 border border-brand-primary/20 mb-8">
+                <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
+                <span class="text-xs font-bold text-brand-primary uppercase tracking-widest">SaaS & Infrastructure
+                    Experts</span>
+            </div>
+
+            <h1 class="font-display font-black text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-8 tracking-tight">
+                Smart IT. <br>
+                <span class="text-brand-primary">Optimized Cost.</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-muted max-w-3xl mx-auto mb-12 leading-relaxed">
+                We build scalable, secure, and high-performing IT environments. Reduce unnecessary IT spending by up to
+                30% with LineaWorks.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#solutions"
+                    class="px-10 py-4 bg-brand-primary text-white font-bold rounded-xl shadow-xl hover:-translate-y-1 transition-all">
+                    Explore Solutions
+                </a>
+                <a href="#contact"
+                    class="px-10 py-4 card-base font-bold rounded-xl hover:bg-gray-100 dark:hover:bg-white/5 transition-all">
+                    Consultation
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16 bg-brand-primary/5 border-y border-color">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <h3 class="font-display font-black text-4xl text-brand-primary mb-2">30%</h3>
+                    <p class="text-xs font-bold uppercase tracking-widest text-muted">Cost Reduction</p>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-display font-black text-4xl text-brand-primary mb-2">99.9%</h3>
+                    <p class="text-xs font-bold uppercase tracking-widest text-muted">Availability</p>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-display font-black text-4xl text-brand-primary mb-2">24/7</h3>
+                    <p class="text-xs font-bold uppercase tracking-widest text-muted">Managed Services</p>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-display font-black text-4xl text-brand-primary mb-2">SaaS</h3>
+                    <p class="text-xs font-bold uppercase tracking-widest text-muted">Core Focus</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solutions" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <span class="text-brand-primary font-bold text-sm uppercase tracking-widest mb-2 block">Our
+                    Services</span>
+                <h2 class="font-display font-bold text-4xl">Comprehensive IT Support</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-base p-10 rounded-2xl group hover:border-brand-primary transition-all">
+                    <i class="ph ph-cloud-arrow-up text-5xl text-brand-primary mb-6"></i>
+                    <h3 class="font-bold text-xl mb-4">SaaS Solutions</h3>
+                    <p class="text-muted text-sm leading-relaxed">Modern software delivery models designed to streamline
+                        your business workflows efficiently.</p>
+                </div>
+                <div class="card-base p-10 rounded-2xl group hover:border-brand-primary transition-all">
+                    <i class="ph ph-hard-drives text-5xl text-brand-primary mb-6"></i>
+                    <h3 class="font-bold text-xl mb-4">IaaS Architecture</h3>
+                    <p class="text-muted text-sm leading-relaxed">Scalable and secure cloud infrastructure that grows
+                        alongside your operational demands.</p>
+                </div>
+                <div class="card-base p-10 rounded-2xl group hover:border-brand-primary transition-all">
+                    <i class="ph ph-shield-checkered text-5xl text-brand-primary mb-6"></i>
+                    <h3 class="font-bold text-xl mb-4">Managed Services</h3>
+                    <p class="text-muted text-sm leading-relaxed">End-to-end IT support and proactive system management
+                        to prevent issues before they occur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="packages" class="py-24 bg-brand-primary/5" x-data="{ annual: true }">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-display font-bold text-4xl mb-16">Solution Packages</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-base p-8 rounded-2xl text-left">
+                    <h4 class="font-bold text-2xl mb-2">Silver</h4>
+                    <p class="text-muted text-sm mb-6">For startups & small teams.</p>
+                    <ul class="space-y-4 mb-8 text-sm">
+                        <li><i class="ph ph-check text-brand-primary"></i> Core SaaS/IaaS</li>
+                        <li><i class="ph ph-check text-brand-primary"></i> Essential Monitoring</li>
+                        <li><i class="ph ph-check text-brand-primary"></i> Flexible Scaling</li>
+                    </ul>
+                    <button
+                        class="w-full py-3 rounded-lg border border-brand-primary text-brand-primary font-bold hover:bg-brand-primary hover:text-white transition-all">Contact
+                        Us</button>
+                </div>
+                <div class="card-base p-8 rounded-2xl text-left border-brand-primary relative shadow-2xl">
+                    <div
+                        class="absolute top-0 right-0 bg-brand-primary text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">
+                        POPULAR</div>
+                    <h4 class="font-bold text-2xl mb-2">Gold</h4>
+                    <p class="text-muted text-sm mb-6">Balanced performance & cost.</p>
+                    <ul class="space-y-4 mb-8 text-sm">
+                        <li><i class="ph ph-check text-brand-primary"></i> Managed Infrastructure</li>
+                        <li><i class="ph ph-check text-brand-primary"></i> Continuous Monitoring</li>
+                        <li><i class="ph ph-check text-brand-primary"></i> Standard SLA</li>
+                    </ul>
+                    <button
+                        class="w-full py-3 rounded-lg bg-brand-primary text-white font-bold hover:bg-brand-primary-hover transition-all">Select
+                        Gold</button>
+                </div>
+                <div class="card-base p-8 rounded-2xl text-left">
+                    <h4 class="font-bold text-2xl mb-2">Platinum</h4>
+                    <p class="text-muted text-sm mb-6">Mission-critical enterprise.</p>
+                    <ul class="space-y-4 mb-8 text-sm">
+                        <li><i class="ph ph-check text-brand-primary"></i> Full Managed Support</li>
+                        <li><i class="ph ph-check text-brand-primary"></i> Advanced Optimization</li>
+                        <li><i class="ph ph-check text-brand-primary"></i> Priority SLA</li>
+                    </ul>
+                    <button
+                        class="w-full py-3 rounded-lg border border-brand-primary text-brand-primary font-bold hover:bg-brand-primary hover:text-white transition-all">Enterprise
+                        Inquiry</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team-scroll-container relative bg-(--bg-body) transition-colors duration-500">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:grid lg:grid-cols-2 gap-12">
+
+                <div class="order-2 lg:order-1 space-y-24 lg:space-y-[60vh] py-12 lg:py-[30vh]">
+
+                    <div class="lead-section">
+                        <span
+                            class="text-(--color-brand-accent) font-bold tracking-widest uppercase text-xs mb-3 block">Founding
+                            Team</span>
+                        <h2 class="font-display font-black text-4xl md:text-5xl lg:text-6xl text-(--text-main) mb-4">
+                            Aditya Noormansyah</h2>
+                        <p class="text-(--color-brand-primary) dark:text-(--color-brand-accent) font-bold text-lg mb-4">
+                            Founder & CEO</p>
+                        <p class="text-(--text-muted) leading-relaxed max-w-md">Drives the company vision, strategy, and
+                            growth. Leads overall direction to ensure real business impact.</p>
+                    </div>
+
+                    <div class="lead-section">
+                        <h2 class="font-display font-black text-4xl md:text-5xl lg:text-6xl text-(--text-main) mb-4">
+                            Abdul Roby W</h2>
+                        <p class="text-(--color-brand-primary) dark:text-(--color-brand-accent) font-bold text-lg mb-4">
+                            Head of Legal & Compliance</p>
+                        <p class="text-(--text-muted) leading-relaxed max-w-md">Ensures the company operates safely,
+                            transparently, and in line with regulations.</p>
+                    </div>
+
+                    <div class="lead-section">
+                        <h2 class="font-display font-black text-4xl md:text-5xl lg:text-6xl text-(--text-main) mb-4">
+                            Dhante R</h2>
+                        <p class="text-(--color-brand-primary) dark:text-(--color-brand-accent) font-bold text-lg mb-4">
+                            Head of Business Development</p>
+                        <p class="text-(--text-muted) leading-relaxed max-w-md">Focused on expanding market reach and
+                            turning opportunities into long-term value.</p>
+                    </div>
+
+                    <div class="lead-section">
+                        <h2 class="font-display font-black text-4xl md:text-5xl lg:text-6xl text-(--text-main) mb-4">
+                            Ridwan Manihuruk</h2>
+                        <p class="text-(--color-brand-primary) dark:text-(--color-brand-accent) font-bold text-lg mb-4">
+                            Head of Strategy & Analytics</p>
+                        <p class="text-(--text-muted) leading-relaxed max-w-md">Turns data and insights into clear,
+                            actionable direction for scaling the company.</p>
+                    </div>
+
+                    <div class="lead-section">
+                        <h2 class="font-display font-black text-4xl md:text-5xl lg:text-6xl text-(--text-main) mb-4">
+                            Numan Nasyar MZ</h2>
+                        <p class="text-(--color-brand-primary) dark:text-(--color-brand-accent) font-bold text-lg mb-4">
+                            Head of Technology</p>
+                        <p class="text-(--text-muted) leading-relaxed max-w-md">Leads SaaS platforms, system
+                            reliability, security, and scalable architecture.</p>
+                    </div>
+
+                    <div class="lead-section">
+                        <h2 class="font-display font-black text-4xl md:text-5xl lg:text-6xl text-(--text-main) mb-4">Ari
+                            Miftahul J</h2>
+                        <p class="text-(--color-brand-primary) dark:text-(--color-brand-accent) font-bold text-lg mb-4">
+                            Head of Finance & Tax</p>
+                        <p class="text-(--text-muted) leading-relaxed max-w-md">Manages budgeting and tax operations to
+                            keep cash flow healthy and optimized.</p>
+                    </div>
+                </div>
+
+                <div
+                    class="order-1 lg:order-2 lg:sticky lg:top-0 lg:h-screen flex items-center justify-center py-12 lg:py-0">
+                    <div class="relative w-full aspect-square max-w-[450px]">
+
+                        <div class="face face-1 absolute inset-0">
+                            <div class="card-base h-full w-full overflow-hidden border-(--border-color) bg-(--bg-card)">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800"
+                                    class="w-full h-full object-cover grayscale dark:opacity-80">
+                                <div
+                                    class="absolute bottom-0 inset-x-0 p-6 bg-linear-to-t from-(--color-brand-primary) to-transparent">
+                                    <span class="text-white font-black text-xl tracking-tighter uppercase">Aditya
+                                        N.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="face face-2 absolute inset-0 opacity-0">
+                            <div class="card-base h-full w-full overflow-hidden border-(--border-color) bg-(--bg-card)">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800"
+                                    class="w-full h-full object-cover grayscale dark:opacity-80">
+                                <div
+                                    class="absolute bottom-0 inset-x-0 p-6 bg-linear-to-t from-(--color-brand-primary) to-transparent">
+                                    <span class="text-white font-black text-xl tracking-tighter uppercase">Abdul
+                                        Roby</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="face face-3 absolute inset-0 opacity-0">
+                            <div class="card-base h-full w-full overflow-hidden border-(--border-color) bg-(--bg-card)">
+                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800"
+                                    class="w-full h-full object-cover grayscale dark:opacity-80">
+                                <div
+                                    class="absolute bottom-0 inset-x-0 p-6 bg-linear-to-t from-(--color-brand-primary) to-transparent">
+                                    <span class="text-white font-black text-xl tracking-tighter uppercase">Dhante
+                                        R.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="face face-4 absolute inset-0 opacity-0">
+                            <div class="card-base h-full w-full overflow-hidden border-(--border-color) bg-(--bg-card)">
+                                <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=800"
+                                    class="w-full h-full object-cover grayscale dark:opacity-80">
+                                <div
+                                    class="absolute bottom-0 inset-x-0 p-6 bg-linear-to-t from-(--color-brand-primary) to-transparent">
+                                    <span class="text-white font-black text-xl tracking-tighter uppercase">Ridwan
+                                        M.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="face face-5 absolute inset-0 opacity-0">
+                            <div class="card-base h-full w-full overflow-hidden border-(--border-color) bg-(--bg-card)">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800"
+                                    class="w-full h-full object-cover grayscale dark:opacity-80">
+                                <div
+                                    class="absolute bottom-0 inset-x-0 p-6 bg-linear-to-t from-(--color-brand-primary) to-transparent">
+                                    <span class="text-white font-black text-xl tracking-tighter uppercase">Numan
+                                        N.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="face face-6 absolute inset-0 opacity-0">
+                            <div class="card-base h-full w-full overflow-hidden border-(--border-color) bg-(--bg-card)">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800"
+                                    class="w-full h-full object-cover grayscale dark:opacity-80">
+                                <div
+                                    class="absolute bottom-0 inset-x-0 p-6 bg-linear-to-t from-(--color-brand-primary) to-transparent">
+                                    <span class="text-white font-black text-xl tracking-tighter uppercase">Ari M.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact"
+        class="pt-20 pb-10 bg-(--bg-footer) text-white border-t border-color relative transition-colors duration-300">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2 lg:col-span-1">
+                    <img src="./img/logos/linea-works.png" alt="Linea Works Logo"
+                        class="md:h-8 h-5 w-auto object-contain mb-8">
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Smart IT. Optimized Cost. Real Performance. Partnering for long-term scalability.
+                    </p>
+                </div>
+                <div>
+                    <h6 class="font-bold mb-6">Support</h6>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li>hello@lineaworks.com</li>
+                        <li>+62 812 3456 7890</li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-bold mb-6">Company</h6>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Leadership</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-bold mb-6">Stay Connected</h6>
+                    <div class="flex gap-4 text-2xl">
+                        <i class="ph ph-linkedin-logo hover:text-brand-accent cursor-pointer"></i>
+                        <i class="ph ph-twitter-logo hover:text-brand-accent cursor-pointer"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center text-xs text-gray-500">
+                <p>&copy; 2025 LineaWorks Inc. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

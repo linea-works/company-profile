@@ -1,0 +1,22 @@
+{
+  "name": "linea-works-compro",
+  "version": "1.0.0",
+  "description": "SAFAR is a cutting-edge SaaS platform designed for the high-end adventure tourism industry. It bridges the gap between cinematic storytelling and robust expedition management, offering a seamless experience for both operators and adventurers.",
+  "keywords": [
+    "Adventure",
+    "UI",
+    "Design"
+  ],
+  "license": "ISC",
+  "author": "Nu'man Nasyar MZ",
+  "type": "commonjs",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
+    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --minify"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.17",
+    "tailwindcss": "^4.1.17"
+  }
+}
